@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
 var today = new Date().toISOString().slice(0, 10);
-console.log(today)
 var splitArray = today.split("-");
 var currentDay = parseInt(splitArray[2]);
 var currentMonth = parseInt(splitArray[1]);
@@ -22,7 +21,9 @@ const stocksSettings = {
 	}
 };
 //do on click when we have html
-function buttonClick() {
+$("#economy").on("click", function(e) {
+    e.preventDefault();
+
 
 $.ajax(stocksSettings).done(function (response) {
     //November Logic
@@ -38,14 +39,33 @@ $.ajax(stocksSettings).done(function (response) {
             
         stocPricekArray.push({day: i, price: response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()]["4. close"]});
             var object = stocPricekArray.find(e => e.day == i);
+            if (object.day !== undefined) {
+            var objectYesterday = stocPricekArray.find(e => e.day == object.day - 1);
             $(`#${i}`).text(object.price);
+                if (objectYesterday !== undefined) {
+                    console.log(objectYesterday);
+                    if (objectYesterday.price > object.price) {
+                        $(`#${i}`).attr("style", "color: red");
+                    } else if (objectYesterday.price > object.price) {
+                        $(`#${i}`).attr("style", "color: green");
+                    } else {
+                        $(`#${i}`).attr("style", "color: black");
+                    }
+                }
+            }
+            //console.log(objectYesterday.price)
+            // $(`#${i}`).text(object.price);
+            // if (object.price > objectYesterday.price && objectYesterday !== undefined && object !== undefined) {
+            //     $(`#${i}`).attr("style", "color: green;");
+            // } else {
+            //     $(`#${i}`).attr("style", "color: red;");
+            // }
             console.log("-------------");
+         //   }
         
     }
-  }
+  } 
 
-});
-}
-buttonClick();
-
+        });
+    });
 });
