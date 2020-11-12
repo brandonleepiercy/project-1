@@ -2,12 +2,14 @@ var resultsBox = document.getElementById("results");
 var userLat = "";
 var userLong = "";
 var newDate = new Date();
-var currentDT = Math.trunc(newDate.getTime()/1000);
+var currentDT = parseInt(Math.trunc(newDate.getTime()/1000));
+var dateCodes = [];
+var weatherData = [];
 
 $(document).ready(function() {
+    console.log(currentDT);
   getLocation();
-  
-
+  generateDateCodes();
 });
 
 function getLocation() {
@@ -31,4 +33,15 @@ function showPosition(position) {
     }).then(function(response) {
         console.log(response);
     });
+};
+
+function generateDateCodes(currentDT) {
+    dateCodes.push(currentDT); 
+    var newDateCodeArray = [];
+    for(i=1;i<4;i++){
+        var newDateCode = (currentDT-(86400*i));
+        newDateCodeArray.push(newDateCode);
+    };
+    // dateCodes = dateCodes.concat(newDateCodeArray);
+    console.log(dateCodes);
 };
