@@ -46,12 +46,21 @@ $.ajax(stocksSettings).done(function (response) {
                         $(`#${i}`).attr("style", "color: black");
                     }
                 } else if (objectYesterday === undefined && object !== undefined) {
-                    
+                    var objectYesterday = stocPricekArray.find(e => e.day == object.day - 3);
+                    if (objectYesterday !== undefined) {
+                        console.log(objectYesterday);
+                        if (objectYesterday.price > object.price) {
+                            $(`#${i}`).attr("style", "color: red");
+                        } else if (objectYesterday.price < object.price) {
+                            $(`#${i}`).attr("style", "color: green");
+                        } else {
+                            $(`#${i}`).attr("style", "color: black");
+                        }
                 }
             }
-        
+        }
         } else if (response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()] !==undefined){
-            
+        
         stocPricekArray.push({day: i, price: response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()]["4. close"]});
             var object = stocPricekArray.find(e => e.day == i);
             if (object !== undefined) {
@@ -66,7 +75,19 @@ $.ajax(stocksSettings).done(function (response) {
                     } else {
                         $(`#${i}`).attr("style", "color: black");
                     }
+                } else if (objectYesterday === undefined && object !== undefined) {
+                    var objectYesterday = stocPricekArray.find(e => e.day == object.day - 3);
+                    if (objectYesterday !== undefined) {
+                        console.log(objectYesterday);
+                        if (objectYesterday.price > object.price) {
+                            $(`#${i}`).attr("style", "color: red");
+                        } else if (objectYesterday.price < object.price) {
+                            $(`#${i}`).attr("style", "color: green");
+                        } else {
+                            $(`#${i}`).attr("style", "color: black");
+                        }
                 }
+            }
             }
             //console.log(objectYesterday.price)
             // $(`#${i}`).text(object.price);
