@@ -12,7 +12,6 @@ console.log(currentDT);
 console.log(typeof(currentDT));
 getLocation();
 generateDateCodes();
-postWeatherData();
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -59,7 +58,7 @@ function showPosition(position) {
     }).then(function(response) {
         weatherData.push(response);
     });
-    console.log(weatherData);
+    postWeatherData(weatherData);
 };
 
 function generateDateCodes() {
