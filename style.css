@@ -1,6 +1,41 @@
-.body {
-    background-image: url('./assets/images/cool-dark-vectors-without-text7745.jpg'); 
+table {
+    height: 540px;
 }
+
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color: beige;
+}
+
+.btn1 {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.table #th {
+    border-top: transparent;
+    color: black;
+}
+
+.table .td {
+    border: .5px solid black;
+    text-align: right;
+    color: black;
+    bottom: 20px;
+}
+
+.body {
+    background-image: linear-gradient(to right, rgb(21, 18, 156), rgb(110, 108, 255));
+}
+
 .jumbotron1 {
     padding: 1rem 1rem;
     margin-bottom: 0rem;
@@ -8,17 +43,14 @@
     background: none;
     border-radius: .3rem;
     text-align: center;
-    color: cyan;
+    color: beige;
+    font-weight: bold;
 }
 
-/* .wrapper {
+.wrapper {
     height:100%;
-    margin-left: 25px;
-    margin-right: 25px;
-} */
-
-.navbar {
-    background: none;
+    border-left: 40px;
+    border-right: 40px;
 }
 
 .bg-style{
@@ -26,6 +58,25 @@
 }
 
 .table {
+    color: black;
     text-align: center;
-    background-image: linear-gradient(to bottom, cyan, white);
+    background-color: beige;
+    border-radius: 50px 50px 0px 0px;
+    padding: 20px;
+    width: 200px;
+    outline: transparent;;
+}
+
+.td {
+    outline: transparent;
+}
+
+@media screen and(min-width:760px) {
+    .table {
+        width: 75vw;
+    }
+
+    .large1 {
+        width: 75vw;
+    }
 }

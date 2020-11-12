@@ -12,14 +12,14 @@ var wrapper = $(".wrapper")
 function createCalendar(elem, year, month) {
 
     var d = new Date(year, month);
-    var table = "<table class='table'><tr><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th><th>Sunday</th></tr><tr>";
+    var table = "<table class='table'><tr><th id='th'>Monday</th><th id='th'>Tuesday</th><th id='th'>Wednesday</th><th id='th'>Thursday</th><th id='th'>Friday</th><th id='th'>Saturday</th><th id='th'>Sunday</th></tr><tr>";
 
     for (var i = 0; i < getDay(d); i++) {
-      table += '<td></td>';
+      table += '<td id="td" class="td"></td>';
     }
 
     while (d.getMonth() == month) {
-      table += '<td>' + d.getDate() + '</td>';
+      table += '<td id="${d.getDate()} td" class="td">' + d.getDate() + '</td>';
 
       if (getDay(d) % 7 == 6) { 
         table += '</tr><tr>';
@@ -30,7 +30,7 @@ function createCalendar(elem, year, month) {
 
     if (getDay(d) != 0) {
       for (var i = getDay(d); i < 7; i++) {
-        table += '<td></td>';
+        table += '<td id="td" class="td"></td>';
       }
     }
 
