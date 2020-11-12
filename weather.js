@@ -1,3 +1,5 @@
+$(document).ready(function() {
+    
 var resultsBox = document.getElementById("results");
 var userLat = "";
 var userLong = "";
@@ -6,11 +8,10 @@ var currentDT = parseInt(Math.trunc(newDate.getTime()/1000));
 var dateCodes = [];
 var weatherData = [];
 
-$(document).ready(function() {
-    console.log(currentDT);
-  getLocation();
-  generateDateCodes();
-});
+console.log(currentDT);
+console.log(typeof(currentDT));
+getLocation();
+generateDateCodes();
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -35,13 +36,15 @@ function showPosition(position) {
     });
 };
 
-function generateDateCodes(currentDT) {
+function generateDateCodes() {
     dateCodes.push(currentDT); 
     var newDateCodeArray = [];
-    for(i=1;i<4;i++){
+    for(i=1;i<5;i++){
         var newDateCode = (currentDT-(86400*i));
         newDateCodeArray.push(newDateCode);
     };
-    // dateCodes = dateCodes.concat(newDateCodeArray);
+    dateCodes = dateCodes.concat(newDateCodeArray);
     console.log(dateCodes);
 };
+
+});
