@@ -1,0 +1,31 @@
+/* .body {
+    background-image: url('./assets/images/cool-dark-vectors-without-text7745.jpg'); 
+} */
+.jumbotron1 {
+    padding: 1rem 1rem;
+    margin-bottom: 0rem;
+    /* background-color: #e9ecef; */
+    background: none;
+    border-radius: .3rem;
+    text-align: center;
+    color: cyan;
+}
+
+/* .wrapper {
+    height:100%;
+    margin-left: 25px;
+    margin-right: 25px;
+} */
+
+.navbar {
+    background: none;
+}
+
+.bg-style{
+    background: none;
+}
+
+.table {
+    text-align: center;
+    background-image: linear-gradient(to bottom, cyan, white);
+}
