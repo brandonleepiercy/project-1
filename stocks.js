@@ -33,20 +33,35 @@ $.ajax(stocksSettings).done(function (response) {
 
         stocPricekArray.push({day: i, price: response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + i.toString()]["4. close"]});
         var object = stocPricekArray.find(e => e.day == i);
-        $(`#${i}`).text(object.price);
-        
-        } else if (response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()] !==undefined){
-            
-        stocPricekArray.push({day: i, price: response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()]["4. close"]});
-            var object = stocPricekArray.find(e => e.day == i);
-            if (object.day !== undefined) {
+        if (object !== undefined) {
             var objectYesterday = stocPricekArray.find(e => e.day == object.day - 1);
             $(`#${i}`).text(object.price);
                 if (objectYesterday !== undefined) {
                     console.log(objectYesterday);
                     if (objectYesterday.price > object.price) {
                         $(`#${i}`).attr("style", "color: red");
-                    } else if (objectYesterday.price > object.price) {
+                    } else if (objectYesterday.price < object.price) {
+                        $(`#${i}`).attr("style", "color: green");
+                    } else {
+                        $(`#${i}`).attr("style", "color: black");
+                    }
+                } else if (objectYesterday === undefined && object !== undefined) {
+                    
+                }
+            }
+        
+        } else if (response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()] !==undefined){
+            
+        stocPricekArray.push({day: i, price: response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()]["4. close"]});
+            var object = stocPricekArray.find(e => e.day == i);
+            if (object !== undefined) {
+            var objectYesterday = stocPricekArray.find(e => e.day == object.day - 1);
+            $(`#${i}`).text(object.price);
+                if (objectYesterday !== undefined) {
+                    console.log(objectYesterday);
+                    if (objectYesterday.price > object.price) {
+                        $(`#${i}`).attr("style", "color: red");
+                    } else if (objectYesterday.price < object.price) {
                         $(`#${i}`).attr("style", "color: green");
                     } else {
                         $(`#${i}`).attr("style", "color: black");
