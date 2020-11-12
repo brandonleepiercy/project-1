@@ -12,6 +12,7 @@ console.log(currentDT);
 console.log(typeof(currentDT));
 getLocation();
 generateDateCodes();
+postWeatherData();
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -70,6 +71,10 @@ function generateDateCodes() {
     };
     dateCodes = dateCodes.concat(newDateCodeArray);
     console.log(dateCodes);
+};
+
+function postWeatherData() {
+    console.log(weatherData);
 };
 
 });
