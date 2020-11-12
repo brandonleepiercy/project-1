@@ -10,6 +10,17 @@ var stocPricekArray = [
    
 ]
 
+const todayStock = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=SPY",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "2a3ff2005fmsh8e47ce61e569efdp1fefefjsn5fa2b36d932c",
+		"x-rapidapi-host": "alpha-vantage.p.rapidapi.com"
+	}
+};
+
 const stocksSettings = {
 	"async": true,
 	"crossDomain": true,
@@ -26,82 +37,50 @@ $("#economy").on("click", function(e) {
 
 
 $.ajax(stocksSettings).done(function (response) {
-    //November Logic
-  
+  console.log(response);
     for (var i = 1; i < currentDay; i++) {
         if(response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + i.toString()] !==undefined) {
 
         stocPricekArray.push({day: i, price: response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + i.toString()]["4. close"]});
         var object = stocPricekArray.find(e => e.day == i);
-        if (object !== undefined) {
-            var objectYesterday = stocPricekArray.find(e => e.day == object.day - 1);
-            $(`#${i}`).text(object.price);
-                if (objectYesterday !== undefined) {
-                    console.log(objectYesterday);
-                    if (objectYesterday.price > object.price) {
-                        $(`#${i}`).attr("style", "color: red");
-                    } else if (objectYesterday.price < object.price) {
-                        $(`#${i}`).attr("style", "color: green");
-                    } else {
-                        $(`#${i}`).attr("style", "color: black");
-                    }
-                } else if (objectYesterday === undefined && object !== undefined) {
-                    var objectYesterday = stocPricekArray.find(e => e.day == object.day - 3);
-                    if (objectYesterday !== undefined) {
-                        console.log(objectYesterday);
-                        if (objectYesterday.price > object.price) {
-                            $(`#${i}`).attr("style", "color: red");
-                        } else if (objectYesterday.price < object.price) {
-                            $(`#${i}`).attr("style", "color: green");
-                        } else {
-                            $(`#${i}`).attr("style", "color: black");
-                        }
+        $(`#${i}`).text(object.price);
+        if (object !== undefined && response !== undefined) {
+           // console.log(response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()]["1. open"]);
+            if (response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + i.toString()]["1. open"] > response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + i.toString()]["4. close"] ) {
+                $(`#${i}`).attr("style", "color: red");
+            } else {
+                $(`#${i}`).attr("style", "color: green")
                 }
             }
-        }
         } else if (response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()] !==undefined){
         
         stocPricekArray.push({day: i, price: response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()]["4. close"]});
             var object = stocPricekArray.find(e => e.day == i);
-            if (object !== undefined) {
-            var objectYesterday = stocPricekArray.find(e => e.day == object.day - 1);
             $(`#${i}`).text(object.price);
-                if (objectYesterday !== undefined) {
-                    console.log(objectYesterday);
-                    if (objectYesterday.price > object.price) {
-                        $(`#${i}`).attr("style", "color: red");
-                    } else if (objectYesterday.price < object.price) {
-                        $(`#${i}`).attr("style", "color: green");
-                    } else {
-                        $(`#${i}`).attr("style", "color: black");
+            if (object !== undefined && response !== undefined) {
+                if (response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()]["1. open"] > response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + "0" + i.toString()]["4. close"] ) {
+                    $(`#${i}`).attr("style", "color: red");
+                } else {
+                    $(`#${i}`).attr("style", "color: green")
                     }
-                } else if (objectYesterday === undefined && object !== undefined) {
-                    var objectYesterday = stocPricekArray.find(e => e.day == object.day - 3);
-                    if (objectYesterday !== undefined) {
-                        console.log(objectYesterday);
-                        if (objectYesterday.price > object.price) {
-                            $(`#${i}`).attr("style", "color: red");
-                        } else if (objectYesterday.price < object.price) {
-                            $(`#${i}`).attr("style", "color: green");
-                        } else {
-                            $(`#${i}`).attr("style", "color: black");
-                        }
                 }
             }
+        }
+        console.log(stocPricekArray);
+        $.ajax(todayStock).done(function (response) {
+            console.log(response);
+            if (response !== undefined) {
+                console.log(response["Global Quote"]["05. price"]);
+                $(`#${currentDay}`).text(response["Global Quote"]["05. price"]);
+                if (response["Global Quote"]["05. price"] > response["Global Quote"]["02. open"]){
+                    $(`#${currentDay}`).attr("style", "color: green");
+                } else if (response["Global Quote"]["05. price"] < response["Global Quote"]["02. open"]) {
+                    $(`#${currentDay}`).attr("style", "color: red");
+                } else {
+                    $(`#${currentDay}`).attr("style", "color: black");
+                }
             }
-            //console.log(objectYesterday.price)
-            // $(`#${i}`).text(object.price);
-            // if (object.price > objectYesterday.price && objectYesterday !== undefined && object !== undefined) {
-            //     $(`#${i}`).attr("style", "color: green;");
-            // } else {
-            //     $(`#${i}`).attr("style", "color: red;");
-            // }
-            console.log("-------------");
-         //   }
-        
-    }
-  } 
-
+        });
         });
     });
 });
