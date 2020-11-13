@@ -77,7 +77,6 @@ function generateDateCodes() {
 async function postDateCodes(arr) {
     console.log(await arr[0].current.temp);
     for(i=0;i<4;i++){
-        var newObject = {}
     };
 };
 
