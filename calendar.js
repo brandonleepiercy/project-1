@@ -19,7 +19,7 @@ function createCalendar(elem, year, month) {
     }
 
     while (d.getMonth() == month) {
-      table += '<td>' + d.getDate() + '</td>';
+      table += `<td id ="${d.getDate()}">` + d.getDate() + '</td>';
 
       if (getDay(d) % 7 == 6) { 
         table += '</tr><tr>';
