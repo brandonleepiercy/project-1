@@ -1,0 +1,42 @@
+body {
+    background-image: url(https://www.designbolts.com/wp-content/uploads/2012/11/Black-wood-photoshop-pattern-for-website-background.jpg);
+}
+
+main {
+    color: cyan;
+    padding: 100px;
+    margin: 40px;
+    background-image: url(https://c0.wallpaperflare.com/preview/428/158/321/background-coffee-computer-connection.jpg);
+}
+
+h1 {
+    font-size: xx-large;
+    text-align: center;
+    color: cyan;
+}
+
+h2 {
+    font-size: large;
+    text-align: center;
+    color: cyan;
+}
+
+.indeed {
+    padding: 50px;
+    margin: 40px;
+    background-color: white;
+}
+
+h3 {
+    text-align: center;
+}
+
+section {
+    color: black;
+    height: 500px;
+    width: 25%;
+    background-image: url(https://previews.123rf.com/images/gretalorenz/gretalorenz1706/gretalorenz170600014/81853985-horizontal-light-wood-texture-background-in-gray-shades.jpg);
+    margin: auto;
+    text-align: center;
+    font-size: xx-large;
+}
