@@ -60,7 +60,7 @@ async function showPosition(position) {
         weatherData.push(response);
     });
     console.log(weatherData);
-    postDateCodes(weatherData);
+    buildFiveDays(weatherData);
 };
 
 function generateDateCodes() {
@@ -74,7 +74,7 @@ function generateDateCodes() {
     console.log(dateCodes);
 };
 
-async function postDateCodes(arr) {
+async function buildFiveDays(arr) {
     console.log(await arr[0].current.temp);
     for(i=0;i<weatherData.length;i++){
         var tempInK=await arr[i].current.temp;
