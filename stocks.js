@@ -39,6 +39,7 @@ $("#economy").on("click", function(e) {
 $.ajax(stocksSettings).done(function (response) {
   console.log(response);
     for (var i = 1; i < currentDay; i++) {
+        $(`#${i}`).text(i);
         if(response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + i.toString()] !==undefined) {
 
         stocPricekArray.push({day: i, price: response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + i.toString()]["4. close"]});
