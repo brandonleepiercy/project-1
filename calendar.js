@@ -10,7 +10,7 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 var wrapper = $(".wrapper")
 
 function createCalendar(elem, year, month) {
-
+  console.log("clicked");
     var d = new Date(year, month);
     var table = "<table class='table'><tr><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th><th>Sunday</th></tr><tr>";
 
@@ -44,5 +44,6 @@ function createCalendar(elem, year, month) {
     if (day == 0) day = 7;
     return day - 1;
   }
+  $("#home").on("click", createCalendar(calendar, year, month));
 
   createCalendar(calendar, year, month);

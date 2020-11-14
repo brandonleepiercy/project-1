@@ -34,7 +34,7 @@ const stocksSettings = {
 //do on click when we have html
 $("#economy").on("click", function(e) {
     e.preventDefault();
-
+    $("h1").text("SPY Daily Performance");
 
 $.ajax(stocksSettings).done(function (response) {
   console.log(response);
