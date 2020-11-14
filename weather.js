@@ -60,7 +60,7 @@ async function showPosition(position) {
         weatherData.push(response);
     });
     console.log(weatherData);
-    postDateCodes(weatherData);
+    buildFiveDays(weatherData);
 };
 
 function generateDateCodes() {
@@ -74,11 +74,27 @@ function generateDateCodes() {
     console.log(dateCodes);
 };
 
-async function postDateCodes(arr) {
+async function buildFiveDays(arr) {
     console.log(await arr[0].current.temp);
-    for(i=0;i<4;i++){
-        var newObject = {}
+    for(i=0;i<weatherData.length;i++){
+        var tempInK=await arr[i].current.temp;
+        var tempInF=Math.floor(((tempInK-273.15)*9)/5+32);
+        console.log(tempInF);
+        var dataDT=await arr[i].current.dt;
+        var dataDTMilli=dataDT*1000;
+        var dateObject=new Date(dataDTMilli);
+        var readableDate=dateObject.toLocaleString("en-US", {day: "numeric"});
+        console.log(readableDate);
+        var humidity=await arr[i].current.humidity + "%";
+        console.log(humidity);
+        var newObject = {
+            date: readableDate,
+            temp: tempInF,
+            hum: humidity
+        };
+        prevFiveDays.push(newObject);
     };
+    console.log(prevFiveDays);
 };
 
 });
