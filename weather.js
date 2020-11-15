@@ -68,6 +68,7 @@ $(document).ready(function() {
         dateCodes = dateCodes.concat(newDateCodeArray);
         console.log(dateCodes);
     };
+    
     async function buildFiveDays(arr) {
         console.log(await arr[0].current.temp);
         for(i=0;i<weatherData.length;i++){
