@@ -10,8 +10,9 @@ var count = 1;
 
 $("#covid19").on("click", function(e) {
 	e.preventDefault();
+	$(".info-div").text(":)")
 	$("h1").text("Covid-19 USA Totals");
-	$(`td`).attr("style", "color: black;");
+	$(".info-div").attr("style", "color: black");
 	console.log(currentDay);
 	
 	for (var i = 1; i < currentDay + 1; i++) {
