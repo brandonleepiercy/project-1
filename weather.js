@@ -24,7 +24,6 @@ $(document).ready(function() {
     };
     
     async function showPosition(position) {
-        resultsBox.innerHTML = "Latitude: "+position.coords.latitude+"<br>Longitude: "+position.coords.longitude;
         userLat=position.coords.latitude;
         userLong=position.coords.longitude;
         console.log(userLat);
@@ -99,16 +98,24 @@ $(document).ready(function() {
     };
     
     function toggle() {
-        console.log(toggleSwitch.value);
         if (toggleSwitch.value=="off"){
             toggleSwitch.value = "on";
         } else if (toggleSwitch.value=="on"){
             toggleSwitch.value = "off";
         };
+        console.log(toggleSwitch.value);
     };
     
     function populate() {
-        
+        if(toggleSwitch.value=="on"){
+            for(i=0;i<prevFiveDays.length;i++){
+                var newString = "Temp: "+prevFiveDays[i].temp+" Humidity: "+prevFiveDays[i].hum;
+                console.log(newString);
+                var boxToEdit = document.getElementById(prevFiveDays[i].date);
+                console.log(boxToEdit);
+                boxToEdit.innerHTML = newString;
+            };
+        };
     };
     
     $("#weather").on("click" , function() {
