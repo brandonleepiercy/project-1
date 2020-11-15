@@ -6,6 +6,12 @@ var currentDay = parseInt(splitArray[2]);
 var currentMonth = parseInt(splitArray[1]);
 var currentYear = parseInt(splitArray[0]);
 
+var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var dayName = days[new Date().getDay()];
+
+console.log(dayName);
+console.log("hello");
+
 var stocPricekArray = [
    
 ]
@@ -34,12 +40,13 @@ const stocksSettings = {
 //do on click when we have html
 $("#economy").on("click", function(e) {
     e.preventDefault();
-
+    $(".info-div").text(":)")
+    $("h1").text("SPY Daily Performance");
 
 $.ajax(stocksSettings).done(function (response) {
   console.log(response);
     for (var i = 1; i < currentDay; i++) {
-        $(`#${i}`).text(i);
+   
         if(response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + i.toString()] !==undefined) {
 
         stocPricekArray.push({day: i, price: response["Time Series (Daily)"][currentYear + "-" + currentMonth + "-" + i.toString()]["4. close"]});
@@ -70,9 +77,9 @@ $.ajax(stocksSettings).done(function (response) {
         console.log(stocPricekArray);
         $.ajax(todayStock).done(function (response) {
             console.log(response);
-            if (response !== undefined) {
+            if (response !== undefined && dayName !== "Sat" && dayName !== "Sun") {
                 console.log(response["Global Quote"]["05. price"]);
-                $(`#${currentDay}`).text(response["Global Quote"]["05. price"]);
+                $(`#${currentDay}`).text(response["Global Quote"]["05. price"] + " " + "Today");
                 if (response["Global Quote"]["05. price"] > response["Global Quote"]["02. open"]){
                     $(`#${currentDay}`).attr("style", "color: green");
                 } else if (response["Global Quote"]["05. price"] < response["Global Quote"]["02. open"]) {

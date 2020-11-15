@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     var resultsBox = document.getElementById("results");
     var userLat = "";
     var userLong = "";
@@ -9,12 +8,10 @@ $(document).ready(function() {
     var weatherData = [];
     var prevFiveDays = [];
     var toggleSwitch = document.getElementById("weather");
-    
     console.log(currentDT);
     console.log(typeof(currentDT));
     getLocation();
     generateDateCodes();
-    
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -22,7 +19,6 @@ $(document).ready(function() {
             resultsBox.innerHTML = "Geolocation not supported";
         }
     };
-    
     async function showPosition(position) {
         userLat=position.coords.latitude;
         userLong=position.coords.longitude;
@@ -62,7 +58,6 @@ $(document).ready(function() {
         console.log(weatherData);
         buildFiveDays(weatherData);
     };
-    
     function generateDateCodes() {
         dateCodes.push(currentDT); 
         var newDateCodeArray = [];
@@ -96,16 +91,16 @@ $(document).ready(function() {
         };
         console.log(prevFiveDays);
     };
-    
     function toggle() {
         if (toggleSwitch.value=="off"){
             toggleSwitch.value = "on";
+            populate();
         } else if (toggleSwitch.value=="on"){
             toggleSwitch.value = "off";
+            //populate();
         };
         console.log(toggleSwitch.value);
     };
-    
     function populate() {
         if(toggleSwitch.value=="on"){
             for(i=0;i<prevFiveDays.length;i++){
@@ -117,10 +112,10 @@ $(document).ready(function() {
             };
         };
     };
-    
     $("#weather").on("click" , function() {
+        $(".info-div").text(":)")
+	    $(".info-div").attr("style", "color: black");
         toggle();
-        populate();
+       // populate();
     });
-    
-    });
+});

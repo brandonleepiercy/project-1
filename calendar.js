@@ -10,17 +10,19 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 var wrapper = $(".wrapper")
 
 function createCalendar(elem, year, month) {
-
+  console.log("clicked");
     var d = new Date(year, month);
-    var table = "<table id='table1' class='table'><tr><th class='th col'>Monday</th><th class='th col'>Tuesday</th><th class='th col'>Wednesday</th><th class='th col'>Thursday</th><th class='th col'> Friday </th><th class='th col'>Saturday</th><th class='th col'>Sunday</th></tr><tr>";
+    var table = "<table class='table'><tr><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th><th>Sunday</th></tr><tr>";
 
     for (var i = 0; i < getDay(d); i++) {
-      table += '<td class="td"></td>';
+      table += '<td></td>';
     }
 
     while (d.getMonth() == month) {
-      
-      table += `<td id="${d.getDate()}" class="td">` + d.getDate() + '</td>';
+      table += `<td>
+        <div class = "date-number">${d.getDate()}</div>
+        <div class = "info-div" id = "${d.getDate()}">:)</div>
+      </td>`;
 
       if (getDay(d) % 7 == 6) { 
         table += '</tr><tr>';
@@ -31,7 +33,7 @@ function createCalendar(elem, year, month) {
 
     if (getDay(d) != 0) {
       for (var i = getDay(d); i < 7; i++) {
-        table += '<td class="td"></td>';
+        table += '<td></td>';
       }
     }
 
@@ -46,4 +48,7 @@ function createCalendar(elem, year, month) {
     return day - 1;
   }
 
+
   createCalendar(calendar, year, month);
+
+   
