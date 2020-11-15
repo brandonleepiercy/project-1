@@ -21,7 +21,7 @@ function createCalendar(elem, year, month) {
     while (d.getMonth() == month) {
       table += `<td>
         <div class = "date-number">${d.getDate()}</div>
-        <div class = "info-div" id = "${d.getDate()}">:)</div>
+        <div class = "info-div" id = "${d.getDate()}"><br></div>
       </td>`;
 
       if (getDay(d) % 7 == 6) { 

@@ -60,7 +60,7 @@ $("body").on("keydown", "input.your-stuff", function(e) {
 
  $("#your").on("click", function(e) {
      e.preventDefault();
-     $(".info-div").text(":)")
+     $(".info-div").html("<br>")
      $("h1").text("Your Schedule");
      $(".info-div").attr("style", "color: black");
 
