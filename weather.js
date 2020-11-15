@@ -113,7 +113,7 @@ $(document).ready(function() {
         };
     };
     $("#weather").on("click" , function() {
-        $(".info-div").text(":)")
+        $(".info-div").html("<br>")
 	    $(".info-div").attr("style", "color: black");
         toggle();
        // populate();
