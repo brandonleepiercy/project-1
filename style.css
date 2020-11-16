@@ -133,9 +133,6 @@ td {
     width: 5%;
 }
 
-;
-.footer-container {
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+.footer-text {
+    text-align: center;
 }
