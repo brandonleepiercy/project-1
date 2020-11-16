@@ -79,7 +79,7 @@ $.ajax(stocksSettings).done(function (response) {
             console.log(response);
             if (response !== undefined && dayName !== "Sat" && dayName !== "Sun") {
                 console.log(response["Global Quote"]["05. price"]);
-                $(`#${currentDay}`).text(response["Global Quote"]["05. price"] + " " + "Today");
+                $(`#${currentDay}`).text(response["Global Quote"]["05. price"]);
                 if (response["Global Quote"]["05. price"] > response["Global Quote"]["02. open"]){
                     $(`#${currentDay}`).attr("style", "color: green");
                 } else if (response["Global Quote"]["05. price"] < response["Global Quote"]["02. open"]) {

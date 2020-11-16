@@ -8,6 +8,10 @@ var year = today.getFullYear();
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"];
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var wrapper = $(".wrapper")
+var today2 = new Date().toISOString().slice(0, 10);
+var splitArray = today2.split("-");
+
+var currentDay = parseInt(splitArray[2]);
 
 function createCalendar(elem, year, month) {
   console.log("clicked");
@@ -36,10 +40,11 @@ function createCalendar(elem, year, month) {
         table += '<td></td>';
       }
     }
-
+   
     table += '</tr></table>';
 
     elem.innerHTML = table;
+$(`#${currentDay}`).parent().attr("style", "background-color: rgb(214, 214, 214);");
   }
 
   function getDay(date) {
