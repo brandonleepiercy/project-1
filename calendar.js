@@ -51,4 +51,8 @@ function createCalendar(elem, year, month) {
 
   createCalendar(calendar, year, month);
 
+  $("#home").on("click", function(e){
+    $(".info-div").html("<br>")
+  });
+
    
