@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-var today = new Date().toISOString().slice(0, 10);
+
+
+var today = moment().toISOString().slice(0, 10);
 var splitArray = today.split("-");
 var currentDay = parseInt(splitArray[2]);
 var currentMonth = parseInt(splitArray[1]);
@@ -78,8 +80,10 @@ $.ajax(stocksSettings).done(function (response) {
         $.ajax(todayStock).done(function (response) {
             console.log(response);
             if (response !== undefined && dayName !== "Sat" && dayName !== "Sun") {
-                console.log(response["Global Quote"]["05. price"]);
                 $(`#${currentDay}`).text(response["Global Quote"]["05. price"]);
+                console.log(response["Global Quote"]["05. price"]);
+                console.log("stock price^")
+                console.log(response)
                 if (response["Global Quote"]["05. price"] > response["Global Quote"]["02. open"]){
                     $(`#${currentDay}`).attr("style", "color: green");
                 } else if (response["Global Quote"]["05. price"] < response["Global Quote"]["02. open"]) {
